@@ -26,11 +26,13 @@ bool Game::init()
     client = std::make_unique<Client>();
     client->connect();
   }
-
+  {
+    return true;
+  }
 }
 void Game::update(float dt)
 {
-
+return;
 }
 
 void Game::render()

@@ -1,6 +1,8 @@
-//
-// Created by Scors on 19/02/2023.
-//
+// Server.h
+
+#ifndef CHATROOM_SERVER_H
+#define CHATROOM_SERVER_H
+
 #include <SFML/Network.hpp>
 #include <thread>
 #include <list>
@@ -8,15 +10,13 @@
 #include <mutex>
 #include <memory>
 
-#ifndef CHATROOM_SERVER_H
-#define CHATROOM_SERVER_H
-class Server
-{
+class Server {
  public:
   void init();
   void run();
   void listen(sf::TcpSocket& cSocket);
   void send(std::string buffer);
+
  private:
   std::vector<std::thread> workers;
   std::vector<std::unique_ptr<sf::TcpSocket>> connections;
@@ -26,6 +26,10 @@ class Server
 
   bool running = true;
 
+  std::mutex mtx; //
+  void send(const char* data); //
+
 
 };
+
 #endif // CHATROOM_SERVER_H
